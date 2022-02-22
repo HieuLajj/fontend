@@ -6,19 +6,79 @@
     </head>
     <body>
         <div id="toast">
-            <!-- Success -->
-            <div class="toast toast--succes">
-                <div class="toast__icon">
-                    <i class="fa-solid fa-circle-check"></i>
-                </div>
-                <div class="toast__body">
-                    <h3 class="toast__title">Success</h3>
-                    <div class="toast__msg">Bán Laptop Công Nghệ Cao</div>
-                </div>
-                <div class="toast__close">
-                    <i class="fa-solid fa-xmark"></i>
-                </div>
-            </div>
         </div>
+        <div>  
+                <button onclick="showSuccessToast();" class="btn btn--success">Success</button>
+                <button onclick="showWarningsToast();" class="btn btn--warn">warning</button>
+                <button onclick="showStopToast();" class="btn btn--danger">stop</button>
+        </div>
+        <script>
+            function toast({title='',message='', type='info',duration=9000}){
+                const main = document.getElementById('toast');
+                if (main){
+                   const toast = document.createElement('div');
+                   const autoRemove=setTimeout(function(){
+                    main.removeChild(toast);
+                   },duration);
+                    toast.onclick = function(e){
+                        if(e.target.closest('.toast__close')){
+                            main.removeChild(toast);
+                            clearTimeout(autoRemove);
+                        }
+                    }
+                  
+                   const icons ={
+                    success: 'fas fa-circle-check',
+                    info: 'fas fa-info-check',
+                    warning: 'fas fa-exclamation-circle',
+                    error: 'fas fa-exclamation-circle',
+                  };
+                  const icon = icons[type];
+                   toast.classList.add('toast',`toast--${type}`);
+                   const delay = (duration/1000).toFixed(2);
+                   toast.style.animation = `animation: slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards ;`;
+                   toast.innerHTML=`
+                    <div class="toast__icon">
+                        <i class="${icon}"></i>
+                    </div>
+                    <div class="toast__body">
+                        <h3 class="toast__title">${title}</h3>
+                        <div class="toast__msg">${message}</div>
+                    </div>
+                    <div class="toast__close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                   `;
+                   main.appendChild(toast);
+    
+                }
+                
+            }
+           
+            function showSuccessToast(){
+                toast({
+                title: 'Thành Công',
+                message: "Đăng nhập thành công",
+                type: 'success',
+                duration: 3000
+            })
+            }
+            function showWarningsToast(){
+                toast({
+                title: 'Cảnh báo',
+                message: "Máy bạn đã bị viruss",
+                type: 'warning',
+                duration: 5000
+            })
+            }
+            function showStopToast(){
+                toast({
+                title: 'Thất bại',
+                message: "Thất bại là mẹ thất bại 2",
+                type: 'error',
+                duration: 5000
+            })
+            }
+        </script>
     </body>
 </html>
