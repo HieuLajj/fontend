@@ -1,4 +1,58 @@
 .container{
+    display: flex; 
+    /*mac dinh 
+    main axis: mac dinh se theo chieu nganh
+    tu trai sang phai
+    mac dinh tren 1 dong
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    */
+
+    /*main axis*/
+    flex-direction: row;
+    flex-direction: row-reverse;
+    flex-direction: column;/*tu tren xuong duoi*/
+    flex-direction: column-reverse; /*tu duoi len tren*/
+
+    /*xuong dong*/
+    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    flex-wrap: wrap-reverse; /*tu duoi len tren*/
+    /*item*/
+    justify-content: flex-start;
+    justify-content: flex-end;
+    justify-content: center;
+    justify-content: space-between;
+    justify-content: space-around;
+    justify-content: space-evenly;
+
+    /*cross axis*/
+    align-items: stretch; /*dan ra cho kin container*/
+    align-items: flex-start;
+    align-items: flex-end;
+    align-items: center;
+    align-items: baseline; /*chan chu*/
+
+    /*align contain giong justify-content nhung theo cross axis*/
+    align-content: flex-start;
+    align-content: flex-end;
+    align-content: center;
+    align-content: space-between;
+    align-content: space-around;
+    align-content: space-evenly;
+
+
+    /*danh cho item*/
+    /*order theo thu tu
+    flex-basis: 120px xet do rong cao tuy theo flex-direction
+    flex-grow
+    flex-shrink
+    align-self
+    */
+
+
     border: 5px solid red;
 }
 .box{
@@ -11,6 +65,7 @@
 }
 .box-1{
     background-color: aqua;
+    order: 1;
 }
 .box-2{
     background-color: aquamarine;
